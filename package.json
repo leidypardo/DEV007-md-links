@@ -1,12 +1,41 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
-  "engines": {
-    "node": ">=16.x"
+  "name": "md-links-kathe",
+  "version": "1.0.0",
+  "description": "Módulo para analizar enlaces en archivos Markdown",
+  "main": "index.js",
+  "bin": {
+    "md-links": "./index.js"
   },
-  "bootcamp": {
-    "createdAt": "2023-06-20T14:05:58.211Z",
-    "version": "6.3.0",
-    "commit": "e129ade681adff8cbb19f82e63f688fef2f08f32"
+  "scripts": {
+    "test": "echo \"Error: no se han definido pruebas\" && exit 1"
+  },
+  "keywords": [
+    "md-links",
+    "markdown",
+    "links",
+    "validation"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1",
+    "marked": "^1.2.9",
+    "axios": "^0.24.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "mocha": "^9.1.2",
+    "chai": "^4.3.4"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "rules": {
+      "semi": "error"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/md-links"
   }
 }
+
