@@ -1,51 +1,57 @@
-// index.js
-
 const fs = require('fs');
-const marked = require('marked');
+const path = require('path');
 const axios = require('axios');
+const marked = require('marked');
 
-function mdLinks(markdownFile) {
+function extractLinks(fileContent, filePath) {
+  const links = [];
+  const renderer = new marked.Renderer();
+
+  renderer.link = function (href, title, text) {
+    links.push({
+      href: href,
+      text: text,
+      file: filePath
+    });
+  };
+
+  marked(fileContent, { renderer });
+  return links;
+}
+
+function validateLink(link) {
+  return axios.head(link.href)
+    .then(response => {
+      link.status = response.status;
+      link.ok = response.status >= 200 && response.status < 300 ? 'ok' : 'fail';
+      return link;
+    })
+    .catch(error => {
+      link.status = error.response ? error.response.status : 'Unknown';
+      link.ok = 'fail';
+      return link;
+    });
+}
+
+function mdLinks(filePath, options = { validate: false }) {
   return new Promise((resolve, reject) => {
-    // Leer el archivo Markdown
-    fs.readFile(markdownFile, 'utf8', (err, data) => {
+    const resolvedPath = path.resolve(filePath);
+
+    fs.readFile(resolvedPath, 'utf8', (err, data) => {
       if (err) {
         reject(err);
-        return;
+      } else {
+        const links = extractLinks(data, resolvedPath);
+
+        if (options.validate) {
+          const validatePromises = links.map(link => validateLink(link));
+          Promise.all(validatePromises)
+            .then(validatedLinks => resolve(validatedLinks))
+            .catch(reject);
+        } else {
+          resolve(links);
+        }
       }
-
-      // Analizar el Markdown a HTML
-      const html = marked(data);
-
-      // Encontrar todos los enlaces en el HTML
-      const regex = /<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1/g;
-      const links = [];
-      let match;
-      while ((match = regex.exec(html))) {
-        links.push(match[2]);
-      }
-
-      // Realizar solicitudes HTTP para verificar los enlaces
-      const linkPromises = links.map((link) =>
-        axios.get(link).catch((error) => ({
-          status: error.response ? error.response.status : 'ERROR',
-          url: link,
-        }))
-      );
-
-      // Obtener los resultados de las solicitudes HTTP
-      Promise.all(linkPromises)
-        .then((results) => {
-          // Generar arreglo de objetos con información de los enlaces
-          const linkInfo = results.map((result) => ({
-            url: result.url,
-            status: result.status === 200 ? 'OK' : 'FAIL',
-          }));
-
-          resolve(linkInfo);
-        })
-        .catch((error) => {
-          reject(error);
-        });
     });
   });
 }
