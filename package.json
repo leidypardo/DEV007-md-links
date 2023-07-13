@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "md-links-kathep",
   "version": "1.0.0",
   "description": "A library to extract and validate links from Markdown files",
   "main": "index.js",
