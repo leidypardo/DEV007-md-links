@@ -1,8 +1,8 @@
 {
   "name": "md-links-tatakathe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library to extract and validate links from Markdown files",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel index.js --out-dir dist",
@@ -33,7 +33,8 @@
   "devDependencies": {
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
-    "@babel/node": "^7.22.6",
-    "@babel/preset-env": "^7.22.9"
+    "@babel/preset-env": "^7.22.9",
+    "@babel/node": "^7.22.6"
+    
   }
 }
