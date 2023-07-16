@@ -3,39 +3,48 @@
 const { program } = require('commander');
 require("@babel/register");
 
-const mdLinks = require('./index.js').default;
+const mdLinks = require('md-links-tatakathe').default;
 
-program.version('1.0.0');
+const args = process.argv.slice(2);
+const filePath = args[0];
+const options = {
+  validate: args.includes('--validate'),
+  stats: args.includes('--stats')
+};
 
-program
-  .arguments('<path-to-file>')
-  .option('--validate', 'Valida los links')
-  .option('--stats', 'Muestra estadísticas de los links')
-  .action((pathToFile, options) => {
-    mdLinks(pathToFile, {
-      validate: options.validate || false,
-      stats: options.stats || false
-    })
-      .then((result) => {
-        if (options.stats) {
-          console.log(`Total: ${result.total}`);
-          console.log(`Unique: ${result.unique}`);
-          if (options.validate) {
-            console.log(`Broken: ${result.broken}`);
-          }
-        } else if (options.validate) {
-          result.forEach((link) => {
-            console.log(`${link.file} ${link.href} ${link.ok} ${link.status} ${link.text}`);
-          });
-        } else {
-          result.forEach((link) => {
-            console.log(`${link.file} ${link.href} ${link.text}`);
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+// Invoca la función mdLinks con los argumentos y opciones proporcionados
+mdLinks(filePath, options)
+  .then(links => {
+    if (options.stats) {
+      const totalLinks = links.length;
+      const uniqueLinks = new Set(links.map(link => link.href)).size;
+      console.log(`Total: ${totalLinks}`);
+      console.log(`Unique: ${uniqueLinks}`);
+
+      if (options.validate) {
+        const okLinks = links.filter(link => link.status === 200);
+        const brokenLinks = links.filter(link => link.status === 404);
+
+        console.log(`okLinks (${okLinks.length}):`);
+        okLinks.forEach(link => {
+          console.log(`${link.file} ${link.href} ${link.ok} ${link.status} ${link.text}`);
+        });
+
+        console.log(`Broken Links (${brokenLinks.length}):`);
+        brokenLinks.forEach(link => {
+          console.log(`${link.file} ${link.href} ${link.ok} ${link.status} ${link.text}`);
+        });
+      }
+    } else if(options.validate) {
+      links.forEach((link) => {
+        console.log(`${link.file} ${link.href} ${link.ok} ${link.status} ${link.text}`);
       });
+    }else{
+      links.forEach((link) => {
+        console.log(`${link.file} ${link.href}`);
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error.message);
   });
-
-program.parse(process.argv);

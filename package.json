@@ -28,13 +28,13 @@
     "axios": "^1.4.0",
     "commander": "^11.0.0",
     "fs": "^0.0.1-security",
-    "marked": "^2.0.0"
+    "marked": "^2.0.0",
+    "md-links-tatakathe": "github:leidypardo/DEV007-md-links"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
-    "@babel/node": "^7.22.6"
-    
+    "@babel/node": "^7.22.6",
+    "@babel/preset-env": "^7.22.9"
   }
 }
