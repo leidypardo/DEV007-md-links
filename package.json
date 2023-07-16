@@ -1,5 +1,5 @@
 {
-  "name": "md-links-kathepalomino",
+  "name": "md-links-tata",
   "version": "1.0.0",
   "description": "A library to extract and validate links from Markdown files",
   "main": "index.js",
@@ -28,8 +28,7 @@
     "axios": "^1.4.0",
     "commander": "^11.0.0",
     "fs": "^0.0.1-security",
-    "marked": "^2.0.0",
-    "md-links-kathep": "github:leidypardo/DEV007-md-links"
+    "marked": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
