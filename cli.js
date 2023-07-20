@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
-require("@babel/register");
+//const { program } = require('commander');
+//require("@babel/register");
 
 const mdLinks = require('md-links-tatakathe').default;
-
+//consultar en la terinal los arumentos que envia el usuario
 const args = process.argv.slice(2);
 const filePath = args[0];
 const options = {
@@ -17,7 +17,8 @@ mdLinks(filePath, options)
   .then(links => {
     if (options.stats) {
       const totalLinks = links.length;
-      const uniqueLinks = new Set(links.map(link => link.href)).size;
+      //verifica los links que no son repetidos con set que no valida los repetido 
+      const uniqueLinks = new Set(links.map(link => link.href)).size;//size longitud total
       console.log(`Total: ${totalLinks}`);
       console.log(`Unique: ${uniqueLinks}`);
 
