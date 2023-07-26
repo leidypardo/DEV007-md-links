@@ -11,7 +11,7 @@
 
 
 ***
-![md-links](test.png)
+
 
 ## 2. Resumen del proyecto
 
@@ -24,7 +24,7 @@ Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que mu
 
  
 
-
+  ![md-links](diagrama.png)
 
 
 * Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
@@ -331,6 +331,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 * [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
   lines, y branches.
 * [ ] Pasa tests (y linters) (`npm test`).
+      ![md-links](test.png)
 
 ## 10. Achicando el problema
 
