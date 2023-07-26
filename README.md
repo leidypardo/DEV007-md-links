@@ -24,7 +24,7 @@ Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que mu
 
  
 
-  ![md-links](diagrama.png)
+  ![md-links](diagrama%20.png)
 
 
 * Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
