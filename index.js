@@ -107,10 +107,11 @@ export default function mdLinks(filePath, options = { validate: false }) {
             if (err) {
               reject(err);
             } else {
+              //extractLinks 1 funcion 
               const links = extractLinks(data, resolvedPath);
 
               if (options.validate) {
-                //valida todos los links con .map y entra a la funcion de validatelink
+                //valida todos los links con .map y entra a la funcion de validatelink (funcion 2)
                 const validatePromises = links.map(link => validateLink(link));
                 Promise.all(validatePromises)
                 //cuando todas las promesas se resuelvan devuelve los links validados
@@ -124,6 +125,7 @@ export default function mdLinks(filePath, options = { validate: false }) {
           });
            // La ruta es un directorio
         } else if (stats.isDirectory()) {
+          //readDirRecursive - funcion 3
           readDirRecursive(resolvedPath)
             .then(links => {
               if (options.validate) {
@@ -133,6 +135,7 @@ export default function mdLinks(filePath, options = { validate: false }) {
                   .then(validatedLinks => resolve(validatedLinks))
                   .catch(reject);
               } else {
+                //envia los links sin validar
                 resolve(links);
               }
             })
