@@ -11,7 +11,7 @@
 
 
 ***
-![md-links](https://user-images.githubusercontent.com/test.jpg)
+![md-links](https://user-images.githubusercontent.com/test.png)
 
 ## 2. Resumen del proyecto
 
