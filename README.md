@@ -332,6 +332,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
   lines, y branches.
 * [ ] Pasa tests (y linters) (`npm test`).
       ![md-links](test.png)
+      ![md-links](diagrama.png)
 
 ## 10. Achicando el problema
 
