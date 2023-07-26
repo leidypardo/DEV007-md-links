@@ -120,15 +120,15 @@ Si pasamos la opción --stats el output (salida) será un objeto con las propied
 
 $ md-links ./some/example.md --stats
 
-Total: 2
+Total: 2  
 Unique: 2
 
 Si escribimos ambas opciones el output será un objeto con las propiedades Total (links en total), Unique (links únicos) y Broken (links rotos).
 
 $ md-links ./some/example.md --stats --validate
 
-Total: 2
-Unique: 2
+Total: 2  
+Unique: 2  
 Broken: 1
 
 ### Pruebas Unitarias / tests
