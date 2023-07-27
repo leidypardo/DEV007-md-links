@@ -28,7 +28,7 @@ Es por ello que, para visualizar mejor lo que tendrás que hacer y planificar tu
 
 - Instalacion  
 
-Ingrese a la terminal de su editor de código y digite lo siguiente.  
+la libreria se encuentra en npmjs.com, ingresa en este link https://www.npmjs.com/package/md-links-tatakathe e Ingresa a la terminal de su editor de código y digite lo siguiente.  
 
 $ npm install md-links-tatakathe  
 
